@@ -73,3 +73,46 @@ print(emp_1.pay)
 #3
 # class methods and static methods
 
+class Employee:
+
+    num_of_emps = 0
+    raise_amount = 1.04
+
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = int(pay)
+        self.email = first + '.' + last + '@gmail.com'
+
+        Employee.num_of_emps += 1
+
+    def fullname(self):
+        return '{} {}'.format(self.first, self.last)
+
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amount)
+
+    @classmethod
+    def set_raise_amount(cls, amount):
+        cls.raise_amount = amount
+
+    @classmethod
+    def from_string(cls, emp_str):
+        first, last, pay = emp_str.split('-')
+        return cls(first, last, pay)
+
+emp_1 = Employee('Dennis', 'Besseling', '50000')
+emp_2 = Employee('Mayra', 'Eriksson', '50000')
+
+Employee.set_raise_amount(1.05)
+
+# what if all the data is coming as strings separated by hiffens?
+emp_str_1 = 'Dennis-Besseling-30000'
+emp_str_2 = 'Mayra-Eriksson-20000'
+emp_str_3 = 'Walter-Dorador-40000'
+
+# add new method as a class method that returns the modification
+first, last, pay = emp_str_1.split('-')
+new_emp_1 = Employee(first, last, pay)
+new_emp_1.pay
+
