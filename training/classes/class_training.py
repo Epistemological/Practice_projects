@@ -204,6 +204,57 @@ class manager(Employee):
         for emp in self.employees:
             print('-->', emp.fullname())
 
-
-
 mgr_1 = manager('Sue', 'Smith', 90000, [dev_1])
+
+print(isinstance(mgr_1, manager))
+# True
+print(isinstance(mgr_1, Employee))
+# True
+print(isinstance(mgr_1, developer))
+# False
+print(issubclass(developer,Employee))
+# True
+print(issubclass(developer,manager))
+# False
+
+#5 Special (Magic/Dunder) Methods
+
+# how to change the behavior of these two additions?
+print(1+2)
+print('a'+'b')
+
+class Employee:
+
+    num_of_emps = 0
+    raise_amount = 1.04
+
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = int(pay)
+        self.email = first + '.' + last + '@gmail.com'
+
+        Employee.num_of_emps += 1
+
+    def fullname(self):
+        return '{} {}'.format(self.first, self.last)
+
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amount)
+
+    def __repr__(self):
+        return "Employee('{}', '{}', {})".format(self.first, self.last, self.pay)
+
+    def __str__(self):
+        return '{} - {}'.format(self.fullname(), self.email)
+
+emp_1 = Employee('Dennis', 'Besseling', '50000')
+emp_2 = Employee('Mayra', 'Eriksson', '50000')
+
+print(emp_1)
+# Dennis Besseling - Dennis.Besseling@gmail.com
+repr(emp_1)
+# "Employee('Dennis', 'Besseling', 50000)"
+str(emp_1)
+# 'Dennis Besseling - Dennis.Besseling@gmail.com'
+
