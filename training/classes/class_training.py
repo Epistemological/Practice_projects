@@ -248,6 +248,12 @@ class Employee:
     def __str__(self):
         return '{} - {}'.format(self.fullname(), self.email)
 
+    def __add__(self, other):
+        return self.pay + other.pay
+
+    def __len__(self):
+        return len(self.fullname())
+
 emp_1 = Employee('Dennis', 'Besseling', '50000')
 emp_2 = Employee('Mayra', 'Eriksson', '50000')
 
@@ -257,4 +263,56 @@ repr(emp_1)
 # "Employee('Dennis', 'Besseling', 50000)"
 str(emp_1)
 # 'Dennis Besseling - Dennis.Besseling@gmail.com'
+
+print(emp_1.__repr__())
+# Employee('Dennis', 'Besseling', 50000)
+print(emp_1.__str__())
+# Dennis Besseling - Dennis.Besseling@gmail.com
+
+
+print(1+2)
+#3
+print(int.__add__(1,2))
+#3
+print(str.__add__('a','b'))
+#ab
+
+print(emp_1 + emp_2)
+# 100000
+
+print(len('test'))
+print(len(emp_1))
+
+#6 Property Decorators - Getters, Setters, and Deleters
+
+
+class Employee:
+
+    def __init__(self, first, last):
+        self.first = first
+        self.last = last
+
+    @property
+    def email(self):
+        return '{}.{}@gmail.com'.format(self.first, self.last)
+
+    @property
+    def fullname(self):
+        return '{} {}'.format(self.first, self.last)
+
+emp_1 = Employee('John', 'Smith')
+emp_1.first = 'Jim'
+
+print(emp_1.first)
+print(emp_1.email)
+print(emp_1.fullname)
+
+
+
+
+
+
+
+
+
 
