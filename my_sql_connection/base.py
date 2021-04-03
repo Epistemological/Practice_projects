@@ -5,11 +5,11 @@ def connect():
     """ Connection to MYSQL DB"""
 
     conn = None
-    database_name = "denka"
+    database_name = "xxx"
     try:
         conn = mysql.connector.connect(host="localhost",
                                        user="root",
-                                       passwd="password",
+                                       passwd="xxx",
                                        database=database_name)
         if conn.is_connected():
             print('Connected to MYSQL DB')
